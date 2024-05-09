@@ -1,0 +1,386 @@
+[gd_scene load_steps=52 format=2]
+
+[ext_resource path="res://assets/player/left walk.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://assets/player/standing.png" type="Texture" id=3]
+[ext_resource path="res://assets/player/right walk .png" type="Texture" id=4]
+[ext_resource path="res://assets/weapons/melee/research_paper_atk_animation.png" type="Texture" id=5]
+[ext_resource path="res://MeleeWeapon.gd" type="Script" id=6]
+[ext_resource path="res://PlayerSprite.gd" type="Script" id=7]
+[ext_resource path="res://MeleeWeaponSprite.gd" type="Script" id=8]
+[ext_resource path="res://assets/weapons/ranged/player/cofee_cup.png" type="Texture" id=9]
+[ext_resource path="res://RangedWeapon.gd" type="Script" id=10]
+[ext_resource path="res://RotationPointRangedWeapon.gd" type="Script" id=11]
+[ext_resource path="res://assets/player/dying.png" type="Texture" id=12]
+
+[sub_resource type="RectangleShape2D" id=48]
+extents = Vector2( 37, 66 )
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 39.5, 46.5 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 375, 454 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 454, 375, 454 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 908, 375, 454 )
+
+[sub_resource type="AtlasTexture" id=35]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 1362, 375, 454 )
+
+[sub_resource type="AtlasTexture" id=36]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 1816, 375, 454 )
+
+[sub_resource type="SpriteFrames" id=37]
+animations = [ {
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
+"loop": false,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="Shader" id=39]
+code = "shader_type canvas_item;
+
+uniform float hit_opacity = 0;
+
+void fragment(){
+ COLOR.rgb = texture(TEXTURE, UV).rgb * (1.0 - hit_opacity) + vec3(1,1,1) * hit_opacity;
+ COLOR.a = texture(TEXTURE, UV).a ;
+}"
+
+[sub_resource type="ShaderMaterial" id=40]
+shader = SubResource( 39 )
+shader_param/hit_opacity = 0.0
+
+[sub_resource type="AtlasTexture" id=44]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 369, 414 )
+
+[sub_resource type="AtlasTexture" id=45]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 369, 0, 369, 414 )
+
+[sub_resource type="AtlasTexture" id=46]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 738, 0, 369, 414 )
+
+[sub_resource type="AtlasTexture" id=47]
+flags = 4
+atlas = ExtResource( 12 )
+region = Rect2( 1107, 0, 369, 414 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 472, 0, 236, 414 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 236, 0, 236, 414 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 708, 0, 236, 414 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 236, 414 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 944, 0, 236, 414 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 1416, 0, 236, 414 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 1652, 0, 236, 414 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 1180, 0, 236, 414 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 237, 412 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 237, 0, 237, 412 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 474, 0, 237, 412 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 711, 0, 237, 412 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 948, 0, 237, 412 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 1185, 0, 237, 412 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 237, 412 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 237, 0, 237, 412 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 474, 0, 237, 412 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 711, 0, 237, 412 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 948, 0, 237, 412 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 1185, 0, 237, 412 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
+"loop": false,
+"name": "die",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 23 ) ],
+"loop": true,
+"name": "down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 24 ) ],
+"loop": true,
+"name": "down left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 25 ) ],
+"loop": true,
+"name": "down right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 26 ) ],
+"loop": true,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 27 ) ],
+"loop": true,
+"name": "right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 28 ) ],
+"loop": true,
+"name": "up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 29 ) ],
+"loop": true,
+"name": "up left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 30 ) ],
+"loop": true,
+"name": "up right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "walk left",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"loop": true,
+"name": "walk right",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=38]
+radius = 12.0
+height = 57.0
+
+[sub_resource type="Animation" id=41]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/hit_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=42]
+resource_name = "immune"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/hit_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=43]
+resource_name = "not immune"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:material:shader_param/hit_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+scale = Vector2( 0.8, 0.8 )
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 48 )
+
+[node name="MeleeWeapon" type="Area2D" parent="."]
+position = Vector2( 1.90735e-06, 3.8147e-06 )
+collision_layer = 16
+collision_mask = 0
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeWeapon"]
+position = Vector2( 81.1367, 3.15747 )
+shape = SubResource( 31 )
+disabled = true
+
+[node name="MeleeWeaponSprite" type="AnimatedSprite" parent="MeleeWeapon"]
+position = Vector2( 78.1367, 2.15748 )
+scale = Vector2( 0.196729, 0.196729 )
+frames = SubResource( 37 )
+script = ExtResource( 8 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = SubResource( 40 )
+position = Vector2( 3.8147e-06, 1 )
+scale = Vector2( 0.323196, 0.323196 )
+frames = SubResource( 2 )
+animation = "down"
+playing = true
+script = ExtResource( 7 )
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 162
+
+[node name="HurtShape" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource( 38 )
+
+[node name="RangedWeapon" type="Node2D" parent="."]
+visible = false
+position = Vector2( 17, 26 )
+script = ExtResource( 10 )
+
+[node name="RotationPointRangedWeapon" type="Node2D" parent="RangedWeapon"]
+position = Vector2( -17, -25 )
+script = ExtResource( 11 )
+
+[node name="RangedWeaponSprite" type="Sprite" parent="RangedWeapon/RotationPointRangedWeapon"]
+position = Vector2( 64, 0 )
+rotation = 1.5708
+scale = Vector2( 0.0848706, 0.0848705 )
+texture = ExtResource( 9 )
+
+[node name="BulletCooldown" type="Timer" parent="RangedWeapon"]
+wait_time = 0.2
+
+[node name="SpeedPowerUpTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="MeleeATKPowerUpTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="RangedATKPowerUpTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="ImmunityTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 41 )
+anims/immune = SubResource( 42 )
+"anims/not immune" = SubResource( 43 )
+
+[connection signal="melee_weapon_power_up" from="." to="MeleeWeapon" method="_on_Player_melee_weapon_power_up"]
+[connection signal="ranged_weapon_power_up" from="." to="RangedWeapon" method="_on_Player_ranged_weapon_power_up"]
+[connection signal="animation_finished" from="MeleeWeapon/MeleeWeaponSprite" to="MeleeWeapon" method="_on_MeleeWeaponSprite_animation_finished"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_HurtBox_body_entered"]
+[connection signal="timeout" from="RangedWeapon/BulletCooldown" to="RangedWeapon" method="_on_BulletCooldown_timeout"]
+[connection signal="timeout" from="SpeedPowerUpTimer" to="." method="_on_SpeedPowerUpTimer_timeout"]
+[connection signal="timeout" from="MeleeATKPowerUpTimer" to="." method="_on_MeleeATKPowerUpTimer_timeout"]
+[connection signal="timeout" from="MeleeATKPowerUpTimer" to="MeleeWeapon" method="_on_MeleeATKPowerUpTimer_timeout"]
+[connection signal="timeout" from="RangedATKPowerUpTimer" to="." method="_on_RangedATKPowerUpTimer_timeout"]
+[connection signal="timeout" from="RangedATKPowerUpTimer" to="RangedWeapon" method="_on_RangedATKPowerUpTimer_timeout"]
+[connection signal="timeout" from="ImmunityTimer" to="." method="_on_ImmunityTimer_timeout"]

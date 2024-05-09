@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Thrower.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ThrowerEnemy.gd" type="Script" id=3]
+
+[node name="ThrowerEnemy" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Thrower" parent="." instance=ExtResource( 1 )]
+
+[connection signal="dead_thrower" from="Thrower" to="." method="_on_Thrower_dead_thrower"]

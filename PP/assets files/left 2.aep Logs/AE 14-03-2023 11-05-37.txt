@@ -1,0 +1,8 @@
+  14/03/2023 11:05:37: Starting composition “head”.
+
+  Output To: C:\Users\Joana\Desktop\left_main\frames\head\left_main_[#####].png    14/03/2023 11:05:38: Finished composition “head”.
+
+
+  Total Time Elapsed: 1 Seconds
+Log closed on 14/03/2023 at 11:05:38
+
